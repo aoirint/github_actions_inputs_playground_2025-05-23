@@ -1,4 +1,4 @@
-name: A
+name: B
 on:
   push:
     branches:
@@ -35,3 +35,8 @@ jobs:
     if: github.event.inputs.flag == 'true'
     steps:
       - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
+
+  call-c-workflow:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ inputs.flag }}
