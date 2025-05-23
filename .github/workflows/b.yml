@@ -14,32 +14,12 @@ defaults:
     shell: bash
 
 jobs:
-  call-c-workflow-flag-true:
+  call-c-workflow-flag:
     uses: ./.github/workflows/c.yml
     with:
-      flag: ${{ fromJSON(true) }}
+      flag: ${{ inputs.flag }}
 
-  call-c-workflow-flag-false:
+  call-c-workflow-flag-string:
     uses: ./.github/workflows/c.yml
     with:
-      flag: ${{ fromJSON(false) }}
-
-  call-c-workflow-flag-null:
-    uses: ./.github/workflows/c.yml
-    with:
-      flag: ${{ fromJSON(null) }}
-
-  call-c-workflow-flag-string-true:
-    uses: ./.github/workflows/c.yml
-    with:
-      flag: 'true'
-
-  call-c-workflow-flag-string-false:
-    uses: ./.github/workflows/c.yml
-    with:
-      flag: 'false'
-
-  call-c-workflow-flag-string-empty:
-    uses: ./.github/workflows/c.yml
-    with:
-      flag: ''
+      flag: ${{ github.event.inputs.flag }}
