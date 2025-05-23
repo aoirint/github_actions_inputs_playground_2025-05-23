@@ -19,12 +19,27 @@ jobs:
     with:
       flag: ${{ inputs.flag }}
 
-  call-c-workflow-github-event-flag-string:
+  call-c-workflow-flag-eq-true:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ inputs.flag == true }}
+
+  call-c-workflow-github-event-flag:
     uses: ./.github/workflows/c.yml
     with:
       flag: ${{ github.event.inputs.flag }}
 
-  call-c-workflow-from-json-github-event-flag-string:
+  call-c-workflow-github-event-flag-eq-string-true:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ github.event.inputs.flag == 'true' }}
+
+  call-c-workflow-from-json-github-event-flag:
     uses: ./.github/workflows/c.yml
     with:
       flag: ${{ fromJSON(github.event.inputs.flag) }}
+
+  call-c-workflow-from-json-github-event-flag-eq-string-true:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ fromJSON(github.event.inputs.flag == 'true') }}
