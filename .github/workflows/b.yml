@@ -19,7 +19,12 @@ jobs:
     with:
       flag: ${{ inputs.flag }}
 
-  call-c-workflow-flag-string:
+  call-c-workflow-github-event-flag-string:
     uses: ./.github/workflows/c.yml
     with:
       flag: ${{ github.event.inputs.flag }}
+
+  call-c-workflow-from-json-github-event-flag-string:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ fromJSON(github.event.inputs.flag) }}
