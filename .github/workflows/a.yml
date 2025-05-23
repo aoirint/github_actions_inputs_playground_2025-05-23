@@ -27,4 +27,4 @@ jobs:
   call-b-workflow:
     uses: ./.github/workflows/b.yml
     with:
-      flag: ${{ inputs.flag == true }}
+      flag: ${{ inputs.flag }}
