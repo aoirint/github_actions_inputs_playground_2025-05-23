@@ -47,3 +47,33 @@ jobs:
     if: github.event.inputs.flag == 'true'
     steps:
       - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
+
+  call-b-workflow-flag:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ inputs.flag }}
+
+  call-b-workflow-flag-eq-true:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ inputs.flag == true }}
+
+  call-b-workflow-github-event-flag:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ github.event.inputs.flag }}
+
+  call-b-workflow-github-event-eq-string-flag:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ github.event.inputs.flag == 'true' }}
+
+  call-b-workflow-from-json-github-event-flag:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ fromJSON(github.event.inputs.flag) }}
+
+  call-b-workflow-from-json-github-event-eq-string-flag:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ fromJSON(github.event.inputs.flag == 'true') }}
