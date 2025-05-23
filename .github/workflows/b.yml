@@ -1,0 +1,34 @@
+name: B
+on:
+  workflow_call:
+    inputs:
+      flag:
+        type: boolean
+        default: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  echo-flag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ toJSON(inputs.flag) }}"
+
+  check-and-echo-flag:
+    if: inputs.flag
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ toJSON(inputs.flag) }}"
+
+  echo-github-events-flag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ toJSON(github.events.inputs.flag) }}"
+
+  check-and-echo-github-events-flag:
+    runs-on: ubuntu-latest
+    if: github.events.inputs.flag == 'true'
+    steps:
+      - run: echo "flag=${{ toJSON(github.events.inputs.flag) }}"
