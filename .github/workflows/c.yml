@@ -15,8 +15,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "flag=${{ toJSON(inputs.flag) }}"
-
-  echo-github-event-flag:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
