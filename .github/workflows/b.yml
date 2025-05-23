@@ -1,0 +1,45 @@
+name: B
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      flag:
+        type: boolean
+        default: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  call-c-workflow-flag-true:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ fromJSON(true) }}
+
+  call-c-workflow-flag-false:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ fromJSON(false) }}
+
+  call-c-workflow-flag-null:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ${{ fromJSON(null) }}
+
+  call-c-workflow-flag-string-true:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: 'true'
+
+  call-c-workflow-flag-string-false:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: 'false'
+
+  call-c-workflow-flag-string-empty:
+    uses: ./.github/workflows/c.yml
+    with:
+      flag: ''
