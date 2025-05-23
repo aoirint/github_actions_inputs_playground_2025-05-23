@@ -48,6 +48,18 @@ jobs:
     steps:
       - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
 
+  check-and-echo-from-json-github-event-flag:
+    runs-on: ubuntu-latest
+    if: fromJSON(github.event.inputs.flag)
+    steps:
+      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
+
+  check-and-echo-from-json-github-event-flag-eq-string-true:
+    runs-on: ubuntu-latest
+    if: fromJSON(github.event.inputs.flag == 'true')
+    steps:
+      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
+
   call-b-workflow-flag:
     uses: ./.github/workflows/b.yml
     with:
