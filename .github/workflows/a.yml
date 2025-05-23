@@ -1,0 +1,20 @@
+name: A
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      flag:
+        type: boolean
+        default: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  call-b-workflow:
+    uses: ./.github/workflows/b.yml
+    with:
+      flag: ${{ inputs.flag }}
