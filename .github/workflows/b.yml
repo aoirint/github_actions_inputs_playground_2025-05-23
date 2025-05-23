@@ -1,4 +1,4 @@
-name: C
+name: B
 on:
   workflow_call:
     inputs:
@@ -22,12 +22,24 @@ jobs:
     steps:
       - run: echo "flag=${{ toJSON(inputs.flag) }}"
 
+  check-and-echo-flag-eq-true:
+    if: inputs.flag == true
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ toJSON(inputs.flag) }}"
+
   echo-github-event-flag:
     runs-on: ubuntu-latest
     steps:
       - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
 
   check-and-echo-github-event-flag:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.flag
+    steps:
+      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
+
+  check-and-echo-github-event-flag-eq-string-true:
     runs-on: ubuntu-latest
     if: github.event.inputs.flag == 'true'
     steps:
