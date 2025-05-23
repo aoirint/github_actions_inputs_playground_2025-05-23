@@ -1,4 +1,4 @@
-name: B
+name: C
 on:
   workflow_call:
     inputs:
