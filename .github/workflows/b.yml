@@ -22,13 +22,13 @@ jobs:
     steps:
       - run: echo "flag=${{ toJSON(inputs.flag) }}"
 
-  echo-github-events-flag:
+  echo-github-event-flag:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "flag=${{ toJSON(github.events.inputs.flag) }}"
+      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
 
-  check-and-echo-github-events-flag:
+  check-and-echo-github-event-flag:
     runs-on: ubuntu-latest
-    if: github.events.inputs.flag == 'true'
+    if: github.event.inputs.flag == 'true'
     steps:
-      - run: echo "flag=${{ toJSON(github.events.inputs.flag) }}"
+      - run: echo "flag=${{ toJSON(github.event.inputs.flag) }}"
