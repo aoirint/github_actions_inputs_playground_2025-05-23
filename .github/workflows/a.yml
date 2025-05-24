@@ -28,3 +28,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "flag=${{ inputs.flag == null && 'true' || 'false' }}"
+
+  echo-flag-neq-true:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ inputs.flag != true && 'true' || 'false' }}"
+
+  echo-flag-neq-false:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ inputs.flag != false && 'true' || 'false' }}"
+
+  echo-flag-neq-null:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "flag=${{ inputs.flag != null && 'true' || 'false' }}"
