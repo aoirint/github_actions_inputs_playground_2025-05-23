@@ -14,8 +14,7 @@ defaults:
     shell: bash
 
 jobs:
-  check-and-echo-flag:
-    if: inputs.flag
+  echo-flag-eq-false:
     runs-on: ubuntu-latest
     steps:
       - run: echo "flag=${{ inputs.flag == false && 'false' || 'true' }}"
