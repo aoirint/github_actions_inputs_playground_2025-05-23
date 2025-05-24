@@ -29,17 +29,17 @@ jobs:
     steps:
       - run: echo "flag=${{ inputs.flag == null && 'true' || 'false' }}"
 
-  echo-flag-neq-true:
+  echo-to-json-flag-eq-string-true:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "flag=${{ inputs.flag != true && 'true' || 'false' }}"
+      - run: echo "flag=${{ toJSON(inputs.flag) == 'true' && 'true' || 'false' }}"
 
-  echo-flag-neq-false:
+  echo-to-json-flag-eq-string-false:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "flag=${{ inputs.flag != false && 'true' || 'false' }}"
+      - run: echo "flag=${{ toJSON(inputs.flag) == 'false' && 'true' || 'false' }}"
 
-  echo-flag-neq-null:
+  echo-to-json-flag-eq-string-null:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "flag=${{ inputs.flag != null && 'true' || 'false' }}"
+      - run: echo "flag=${{ toJSON(inputs.flag) == 'null' && 'true' || 'false' }}"
